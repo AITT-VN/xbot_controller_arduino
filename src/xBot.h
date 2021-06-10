@@ -1,5 +1,5 @@
-#ifndef XCORE_H
-#define XCORE_H
+#ifndef XBOT_H
+#define XBOT_H
 
 class Motors{
 	public:
