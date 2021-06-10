@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "xCore.h" 
+#include "xBot.h" 
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
 
@@ -20,6 +20,7 @@ void _pin(int pin, int value){
 }
 
 void _speed(int index, int value){
+  Serial.println(value);
   Serial.println("Speed");
 
   int pin_pwm = DCMotors[index][0]; 
@@ -41,7 +42,7 @@ void _speed(int index, int value){
     _pin(in2, 0);
     _pin(in1, 0);
   }
-  pca9685.setPWM(pin_pwm, 0, map(value, 0, 100, 0, max_pwm_value));
+  pca9685.setPWM(pin_pwm, 0, map(abs(value), 0, 100, 0, max_pwm_value));
 }
 
 void Motors::move(int dir, int speed){
