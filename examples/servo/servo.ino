@@ -21,7 +21,7 @@
 AITT_PWMServoDriver pca9685 = AITT_PWMServoDriver();
 
 Servos s;
-pwm_num = 0;
+int pwm_num = 0;
 
 void setup() {
   Serial.begin(115200);
