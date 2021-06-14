@@ -1,0 +1,29 @@
+#######################################
+# Classes, datatypes (KEYWORD1)
+#######################################
+
+AITT_PWMServoDriver	KEYWORD1
+Motors              KEYWORD1
+Servos              KEYWORD1
+BLE                 KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#AITT_PWMServoDriver:
+    begin	    KEYWORD2
+    setPWMFreq	KEYWORD2
+#Motors:
+    move        KEYWORD2
+    stop        KEYWORD2
+#Servos:
+    position    KEYWORD2
+    rotate      KEYWORD2
+    release     KEYWORD2
+    spin        KEYWORD2
+#BLE:
+    available   KEYWORD2
+    read        KEYWORD2
+    write       KEYWORD2
+    stop        KEYWORD2

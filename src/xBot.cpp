@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "xBot.h" 
 #include <Wire.h>
-#include <Adafruit_PWMServoDriver.h>
+#include <AITT_PWMServoDriver.h>
 
 
-extern Adafruit_PWMServoDriver pca9685;
+extern AITT_PWMServoDriver pca9685;
 
 int max_pwm_value = 3000;
 int DCMotors[2][3] = {{10, 11, 12}, {15, 14, 13}};

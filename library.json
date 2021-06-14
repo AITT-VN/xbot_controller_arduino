@@ -1,0 +1,19 @@
+{
+	"name": "xBotArduino",
+	"description": "Create an xBot project",
+	"keywords": "xBot, xBotArduino",
+	"authors":
+		{
+			"name": "AITT",
+			"email": "user@gmail.com",
+			"url": "https://github.com/AITT-VN"
+		},
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/AITT-VN/xbot_controller_arduino"
+	},
+	"url": "https://github.com/AITT-VN",
+	"frameworks": "Arduino",
+	"platforms": "*"
+}
