@@ -1,18 +1,3 @@
-/*************************************************** 
-  This is an example for our AITT 16-channel PWM & Servo driver
-  PWM test - this will drive 16 PWMs in a 'wave'
-
-  These drivers use I2C to communicate, 2 pins are required to  
-  interface.
-
-  Adafruit invests time and resources providing this open source code, 
-  please support Adafruit and open-source hardware by purchasing 
-  products from Adafruit!
-
-  Written by Huy tran for AITT Industries.  
-  BSD license, all text above must be included in any redistribution
- ****************************************************/
-
 #include <Wire.h>
 #include <AITT_PWMServoDriver.h>
 #include "xBot.h"
