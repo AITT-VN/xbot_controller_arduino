@@ -21,6 +21,7 @@
 #define BTN_ONBOARD  23
 
 #define BUZZER  27
+#define BUZZER_CHANNEL 0
 
 #define SDA  21
 

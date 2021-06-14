@@ -1,6 +1,8 @@
 #ifndef XBOT_H
 #define XBOT_H
-
+#include "setting.h"
+#include "esp32BLEUtilities.h"
+#include "Tone32.h"
 class Motors{
 	public:
 		void move(int dir, int speed);
