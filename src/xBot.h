@@ -10,10 +10,12 @@ class Motors{
 };
 
 class Servos{
+	private:
+    	int pos[8] = {0 ,0, 0, 0, 0, 0, 0, 0};
 	public:
 		Servos();
 		void position(int index, int degrees);
-		void rotate();
+		void rotate(int index, int change, int sleep);
 		void release(int index);
 		void spin(int index, int direction, int speed);
 };
