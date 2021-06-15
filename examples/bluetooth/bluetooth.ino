@@ -9,15 +9,13 @@ void setup() {
 }
 
 void loop(){
-    if(BLE.available())
+  if(BLE.available())
 	{
-        Serial.println("Connected");
+    Serial.println("Connected");
 		while(BLE.available())
 		{
-			byte data=BLE.read();
-            Serial.println(data);
-        }
+			char data = BLE.read();
+      Serial.println(data);
+    }
 	}
-    Serial.println("Disconnected");
-    delay(1000);
 }

@@ -12,7 +12,7 @@ int DCMotors[2][3] = {{10, 11, 12}, {15, 14, 13}};
 
 /* Class Motors */
 void _pin(int pin, int value){
-	Serial.println("Pin");
+	//Serial.println("Pin");
   if (value == 0){
     pca9685.setPin(pin, 0, false);
   }
@@ -22,13 +22,13 @@ void _pin(int pin, int value){
 }
 
 void _speed(int index, int value){
-  Serial.println(value);
-  Serial.println("Speed");
+  //Serial.println(value);
+  //Serial.println("Speed");
 
   int pin_pwm = DCMotors[index][0]; 
   int in2 = DCMotors[index][1];  
   int in1 = DCMotors[index][2]; 
-  Serial.print(pin_pwm); Serial.print(in2); Serial.println(in1); 
+  //Serial.print(pin_pwm); Serial.print(in2); Serial.println(in1); 
   if (value > 0){
     //Forward
     _pin(in2, 0);
@@ -48,7 +48,7 @@ void _speed(int index, int value){
 }
 
 void Motors::move(int dir, int speed){
-	Serial.println("Move");
+	//Serial.println("Move");
   int m1 = 0; //speed of motor 1 to steer
   int m2 = 0; //speed of motor 2 to steer
   if (dir == 1){
