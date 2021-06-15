@@ -1,23 +1,20 @@
 #ifndef XBOT_H
 #define XBOT_H
+
+#include "Wire.h"
+#include "Arduino.h"
 #include "setting.h"
 #include "esp32BLEUtilities.h"
 #include "Tone32.h"
-class Motors{
-	public:
-		void move(int dir, int speed);
-		void stop();
-};
-
-class Servos{
+#include "pca9685.h"
+class xbot{
 	private:
-    	int pos[8] = {0 ,0, 0, 0, 0, 0, 0, 0};
+		Pca9685 pca;
+		Tone32 tone32;
 	public:
-		Servos();
-		void position(int index, int degrees);
-		void rotate(int index, int change, int sleep);
-		void release(int index);
-		void spin(int index, int direction, int speed);
+		void init();
+		void tone(unsigned int frequency, unsigned long duration);
+		void noTone();
 };
 
 #endif

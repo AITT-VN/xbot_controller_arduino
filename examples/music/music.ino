@@ -1,15 +1,17 @@
-#include <Wire.h>
 #include "xBot.h"
+
+xbot x;
 
 void setup() {
     Serial.begin(115200);
+    x.init();
     delay(10);
     Serial.println("Setup Done!");
 }
 
 void loop() {
-    tone(NOTE_C4, 500);
+    x.tone(NOTE_C4, 500);
     delay(200);
-    noTone();
+    x.noTone();
     delay(200);
 }

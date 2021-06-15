@@ -4,8 +4,12 @@
 #include "Arduino.h"
 #include "pitches.h"
 
-void tone(unsigned int frequency, unsigned long duration = 0);
-void noTone();
+class Tone32{
+	public:
+		void tone(unsigned int frequency, unsigned long duration = 0);
+        void noTone();
+};
+
 #endif
 
 
