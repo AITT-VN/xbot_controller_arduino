@@ -8,6 +8,8 @@
 #include "Tone32.h"
 #include "pca9685.h"
 #include "led.h"
+#include "lcd16x2.h"
+
 class xbot{
 	private:
 		Pca9685 pca;
