@@ -2,20 +2,22 @@
 #define _LCD16x2_H
 
 #include "Arduino.h"
-#include "i2c_lcd.h"
+#include "LiquidCrystal_I2C.h"
+#include "port.h"
 
-class Lcd : public LiquidCrystal_I2C
+#define I2C_ERROR           (-1)
+#define LCD_DEFAULT_ADDRESS (0x20)
+
+class Lcd : public LiquidCrystal_I2C, Port
 {
     private:
         int self_port = 0;
-        uint8_t scl_pin, sda_pin;
+        int scl_pin, sda_pin;
 
     public:
-        Lcd(int port);
-        Lcd(int port, uint8_t addr, uint8_t cols, uint8_t rows);
-        void _reset_port(int port);
-        void _check_port(int port);
-        void init(int port);
+        Lcd(uint8_t port);
+        Lcd(uint8_t port, uint8_t addr, uint8_t cols, uint8_t rows);
+        void lcd_begin(void);
 } ;
 
 #endif

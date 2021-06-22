@@ -2,7 +2,7 @@
 #define _TONE32_h
 
 #include "Arduino.h"
-#include "pitches.h"
+#include "utility/pitches.h"
 
 class Tone32{
 	public:

@@ -1,6 +1,6 @@
 // Based on the work by DFRobot
 
-#include "i2c_lcd.h"
+#include "LiquidCrystal_I2C.h"
 #include <inttypes.h>
 #if defined(ARDUINO) && ARDUINO >= 100
 
@@ -44,7 +44,7 @@ inline void LiquidCrystal_I2C::write(uint8_t value) {
 // can't assume that its in that state when a sketch starts (and the
 // LiquidCrystal constructor is called).
 
-void LiquidCrystal_I2C::Liquid_I2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows)
+LiquidCrystal_I2C::LiquidCrystal_I2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows)
 {
   _Addr = lcd_Addr;
   _cols = lcd_cols;
@@ -54,17 +54,16 @@ void LiquidCrystal_I2C::Liquid_I2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd
 
 void LiquidCrystal_I2C::oled_init(){
   _oled = true;
+	init_priv();
+}
+
+void LiquidCrystal_I2C::init(){
 	Wire.begin();
 	init_priv();
 }
 
-void LiquidCrystal_I2C::_init(){
-	Wire.begin();
-	init_priv();
-}
-
-void LiquidCrystal_I2C::_init(uint8_t sda, uint8_t scl){
-	Wire.begin(sda, scl);
+void LiquidCrystal_I2C::init(int sdaPin, int sclPin, uint32_t frequency){
+	Wire.begin(sdaPin, sclPin, frequency);
 	init_priv();
 }
 
