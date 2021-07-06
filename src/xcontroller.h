@@ -1,28 +1,38 @@
-#ifndef XBOT_H
-#define XBOT_H
-
-#include "Wire.h"
 #include "Arduino.h"
-#include "setting.h"
-#include "esp32BLEUtilities.h"
+#include <Adafruit_NeoPixel.h>
 #include "Tone32.h"
-#include "pca9685.h"
-#include "led.h"
-#include "mpu6050.h"
-#include <utility/TM1640.h>
-#include <utility/TM16xxMatrix.h>
+#include "Motors.h"
+#include "Servos.h"
 
-class xbot{
-	private:
-		Pca9685 pca;
-		Tone32 tone32;
-		Led led;
-	public:
-		void init();
-		void tone(unsigned int frequency, unsigned long duration);
-		void noTone();
-		void show_led(int index, String color);
-		void led_off(int index);
+#ifndef XCONTROLLER_H
+#define XCONTROLLER_H
+
+#define NUMPIXELS_ONBOARD 2
+
+//#include "Wire.h"
+
+//#include "esp32BLEUtilities.h"
+
+//#include "pca9685.h"
+//#include "mpu6050.h"
+//#include <utility/TM1640.h>
+//#include <utility/TM16xxMatrix.h>
+
+
+
+class XController
+{
+  private:
+    //Pca9685 pca;
+    Adafruit_NeoPixel ledOnboard = Adafruit_NeoPixel(NUMPIXELS_ONBOARD, RGB_LED, NEO_GRB + NEO_KHZ800);
+
+  public:
+    XController(void);
+    //void init();
+    void showLed(uint8_t index, uint8_t r, uint8_t g, uint8_t b);
+    void tone(unsigned int frequency, unsigned long duration, uint8_t channel);
+    void noTone(uint8_t channel);
+
 };
 
 #endif

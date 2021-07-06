@@ -1,38 +1,38 @@
 /*!
- * @file AITT_NeoPixel.cpp
+ * @file Adafruit_NeoPixel.cpp
  *
- * @mainpage Arduino Library for driving AITT NeoPixel addressable LEDs,
+ * @mainpage Arduino Library for driving NeoPixel addressable LEDs,
  * FLORA RGB Smart Pixels and compatible devicess -- WS2811, WS2812, WS2812B,
- * SK6812, etc.
+ * SK6812, etc. This is 
  *
  * @section intro_sec Introduction
  *
- * This is the documentation for AITT's NeoPixel library for the
+ * This is the documentation for Adafruit's NeoPixel library for the
  * Arduino platform, allowing a broad range of microcontroller boards
  * (most AVR boards, many ARM devices, ESP8266 and ESP32, among others)
- * to control AITT NeoPixels, FLORA RGB Smart Pixels and compatible
+ * to control Adafruit NeoPixels, FLORA RGB Smart Pixels and compatible
  * devices -- WS2811, WS2812, WS2812B, SK6812, etc.
  *
- * AITT invests time and resources providing this open source code,
- * please support AITT and open-source hardware by purchasing products
- * from AITT!
+ * Adafruit invests time and resources providing this open source code,
+ * please support Adafruit and open-source hardware by purchasing products
+ * from Adafruit!
  *
  * @section author Author
  *
- * Written by Phil "Paint Your Dragon" Burgess for AITT Industries,
+ * Written by Phil "Paint Your Dragon" Burgess for Adafruit Industries,
  * with contributions by PJRC, Michael Miller and other members of the
  * open source community.
  *
  * @section license License
  *
- * This file is part of the AITT_NeoPixel library.
+ * This file is part of the Adafruit_NeoPixel library.
  *
- * AITT_NeoPixel is free software: you can redistribute it and/or
+ * Adafruit_NeoPixel is free software: you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * AITT_NeoPixel is distributed in the hope that it will be useful,
+ * Adafruit_NeoPixel is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
@@ -43,7 +43,7 @@
  *
  */
 
-#include "AITT_NeoPixel.h"
+#include "Adafruit_NeoPixel.h"
 
 #if defined(TARGET_LPC1768)
   #include <time.h>
@@ -53,7 +53,7 @@
 #include "nrf.h"
 
 // Interrupt is only disabled if there is no PWM device available
-// Note: AITT Bluefruit nrf52 does not use this option
+// Note: Adafruit Bluefruit nrf52 does not use this option
 //#define NRF52_DISABLE_INT
 #endif
 
@@ -63,13 +63,13 @@
   @param   n  Number of NeoPixels in strand.
   @param   p  Arduino pin number which will drive the NeoPixel data in.
   @param   t  Pixel type -- add together NEO_* constants defined in
-              AITT_NeoPixel.h, for example NEO_GRB+NEO_KHZ800 for
+              Adafruit_NeoPixel.h, for example NEO_GRB+NEO_KHZ800 for
               NeoPixels expecting an 800 KHz (vs 400 KHz) data stream
               with color bytes expressed in green, red, blue order per
               pixel.
-  @return  AITT_NeoPixel object. Call the begin() function before use.
+  @return  Adafruit_NeoPixel object. Call the begin() function before use.
 */
-AITT_NeoPixel::AITT_NeoPixel(uint16_t n, uint16_t p, neoPixelType t) :
+Adafruit_NeoPixel::Adafruit_NeoPixel(uint16_t n, uint16_t p, neoPixelType t) :
   begun(false), brightness(0), pixels(NULL), endTime(0) {
   updateType(t);
   updateLength(n);
@@ -80,13 +80,13 @@ AITT_NeoPixel::AITT_NeoPixel(uint16_t n, uint16_t p, neoPixelType t) :
   @brief   "Empty" NeoPixel constructor when length, pin and/or pixel type
            are not known at compile-time, and must be initialized later with
            updateType(), updateLength() and setPin().
-  @return  AITT_NeoPixel object. Call the begin() function before use.
+  @return  Adafruit_NeoPixel object. Call the begin() function before use.
   @note    This function is deprecated, here only for old projects that
            may still be calling it. New projects should instead use the
            'new' keyword with the first constructor syntax (length, pin,
            type).
 */
-AITT_NeoPixel::AITT_NeoPixel() :
+Adafruit_NeoPixel::Adafruit_NeoPixel() :
 #if defined(NEO_KHZ400)
   is800KHz(true),
 #endif
@@ -95,9 +95,9 @@ AITT_NeoPixel::AITT_NeoPixel() :
 }
 
 /*!
-  @brief   Deallocate AITT_NeoPixel object, set data pin back to INPUT.
+  @brief   Deallocate Adafruit_NeoPixel object, set data pin back to INPUT.
 */
-AITT_NeoPixel::~AITT_NeoPixel() {
+Adafruit_NeoPixel::~Adafruit_NeoPixel() {
   free(pixels);
   if(pin >= 0) pinMode(pin, INPUT);
 }
@@ -105,7 +105,7 @@ AITT_NeoPixel::~AITT_NeoPixel() {
 /*!
   @brief   Configure NeoPixel pin for output.
 */
-void AITT_NeoPixel::begin(void) {
+void Adafruit_NeoPixel::begin(void) {
   if(pin >= 0) {
     pinMode(pin, OUTPUT);
     digitalWrite(pin, LOW);
@@ -114,7 +114,7 @@ void AITT_NeoPixel::begin(void) {
 }
 
 /*!
-  @brief   Change the length of a previously-declared AITT_NeoPixel
+  @brief   Change the length of a previously-declared Adafruit_NeoPixel
            strip object. Old data is deallocated and new data is cleared.
            Pin number and pixel format are unchanged.
   @param   n  New length of strip, in pixels.
@@ -123,7 +123,7 @@ void AITT_NeoPixel::begin(void) {
            'new' keyword with the first constructor syntax (length, pin,
            type).
 */
-void AITT_NeoPixel::updateLength(uint16_t n) {
+void Adafruit_NeoPixel::updateLength(uint16_t n) {
   free(pixels); // Free existing data (if any)
 
   // Allocate new data -- note: ALL PIXELS ARE CLEARED
@@ -138,13 +138,13 @@ void AITT_NeoPixel::updateLength(uint16_t n) {
 
 /*!
   @brief   Change the pixel format of a previously-declared
-           AITT_NeoPixel strip object. If format changes from one of
+           Adafruit_NeoPixel strip object. If format changes from one of
            the RGB variants to an RGBW variant (or RGBW to RGB), the old
            data will be deallocated and new data is cleared. Otherwise,
            the old data will remain in RAM and is not reordered to the
            new format, so it's advisable to follow up with clear().
   @param   t  Pixel type -- add together NEO_* constants defined in
-              AITT_NeoPixel.h, for example NEO_GRB+NEO_KHZ800 for
+              Adafruit_NeoPixel.h, for example NEO_GRB+NEO_KHZ800 for
               NeoPixels expecting an 800 KHz (vs 400 KHz) data stream
               with color bytes expressed in green, red, blue order per
               pixel.
@@ -153,7 +153,7 @@ void AITT_NeoPixel::updateLength(uint16_t n) {
            'new' keyword with the first constructor syntax
            (length, pin, type).
 */
-void AITT_NeoPixel::updateType(neoPixelType t) {
+void Adafruit_NeoPixel::updateType(neoPixelType t) {
   bool oldThreeBytesPerPixel = (wOffset == rOffset); // false if RGBW
 
   wOffset = (t >> 6) & 0b11; // See notes in header file
@@ -200,7 +200,7 @@ extern "C" void  k210Show(
            specialized alternative or companion libraries exist that use
            very device-specific peripherals to work around it.
 */
-void AITT_NeoPixel::show(void) {
+void Adafruit_NeoPixel::show(void) {
 
   if(!pixels) return;
 
@@ -2227,7 +2227,7 @@ void AITT_NeoPixel::show(void) {
            if any, is set to INPUT and the new pin is set to OUTPUT.
   @param   p  Arduino pin number (-1 = no pin).
 */
-void AITT_NeoPixel::setPin(uint16_t p) {
+void Adafruit_NeoPixel::setPin(uint16_t p) {
   if(begun && (pin >= 0)) pinMode(pin, INPUT);
   pin = p;
   if(begun) {
@@ -2252,7 +2252,7 @@ void AITT_NeoPixel::setPin(uint16_t p) {
   @param   g  Green brightness, 0 = minimum (off), 255 = maximum.
   @param   b  Blue brightness, 0 = minimum (off), 255 = maximum.
 */
-void AITT_NeoPixel::setPixelColor(
+void Adafruit_NeoPixel::setPixelColor(
  uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
 
   if(n < numLEDs) {
@@ -2284,7 +2284,7 @@ void AITT_NeoPixel::setPixelColor(
   @param   w  White brightness, 0 = minimum (off), 255 = maximum, ignored
               if using RGB pixels.
 */
-void AITT_NeoPixel::setPixelColor(
+void Adafruit_NeoPixel::setPixelColor(
  uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
   if(n < numLEDs) {
@@ -2314,7 +2314,7 @@ void AITT_NeoPixel::setPixelColor(
               pixels) or ignored (for RGB pixels), next is red, then green,
               and least significant byte is blue.
 */
-void AITT_NeoPixel::setPixelColor(uint16_t n, uint32_t c) {
+void Adafruit_NeoPixel::setPixelColor(uint16_t n, uint32_t c) {
   if(n < numLEDs) {
     uint8_t *p,
       r = (uint8_t)(c >> 16),
@@ -2349,7 +2349,7 @@ void AITT_NeoPixel::setPixelColor(uint16_t n, uint32_t c) {
   @param   count  Number of pixels to fill, as a positive value. Passing
                   0 or leaving unspecified will fill to end of strip.
 */
-void AITT_NeoPixel::fill(uint32_t c, uint16_t first, uint16_t count) {
+void Adafruit_NeoPixel::fill(uint32_t c, uint16_t first, uint16_t count) {
   uint16_t i, end;
 
   if(first >= numLEDs) {
@@ -2394,7 +2394,7 @@ void AITT_NeoPixel::fill(uint32_t c, uint16_t first, uint16_t count) {
            one-size-fits-all operation of gamma32(). Diffusing the LEDs also
            really seems to help when using low-saturation colors.
 */
-uint32_t AITT_NeoPixel::ColorHSV(uint16_t hue, uint8_t sat, uint8_t val) {
+uint32_t Adafruit_NeoPixel::ColorHSV(uint16_t hue, uint8_t sat, uint8_t val) {
 
   uint8_t r, g, b;
 
@@ -2481,7 +2481,7 @@ uint32_t AITT_NeoPixel::ColorHSV(uint16_t hue, uint8_t sat, uint8_t val) {
            was previously written with one of the setPixelColor() functions.
            This gets more pronounced at lower brightness levels.
 */
-uint32_t AITT_NeoPixel::getPixelColor(uint16_t n) const {
+uint32_t Adafruit_NeoPixel::getPixelColor(uint16_t n) const {
   if(n >= numLEDs) return 0; // Out of bounds, return no color.
 
   uint8_t *p;
@@ -2535,7 +2535,7 @@ uint32_t AITT_NeoPixel::getPixelColor(uint16_t n) const {
            write-only resource, maintaining their own state to render each
            frame of an animation, not relying on read-modify-write.
 */
-void AITT_NeoPixel::setBrightness(uint8_t b) {
+void Adafruit_NeoPixel::setBrightness(uint8_t b) {
   // Stored brightness value is different than what's passed.
   // This simplifies the actual scaling math later, allowing a fast
   // 8x8-bit multiply and taking the MSB. 'brightness' is a uint8_t,
@@ -2573,20 +2573,20 @@ void AITT_NeoPixel::setBrightness(uint8_t b) {
   @brief   Retrieve the last-set brightness value for the strip.
   @return  Brightness value: 0 = minimum (off), 255 = maximum.
 */
-uint8_t AITT_NeoPixel::getBrightness(void) const {
+uint8_t Adafruit_NeoPixel::getBrightness(void) const {
   return brightness - 1;
 }
 
 /*!
   @brief   Fill the whole NeoPixel strip with 0 / black / off.
 */
-void AITT_NeoPixel::clear(void) {
+void Adafruit_NeoPixel::clear(void) {
   memset(pixels, 0, numBytes);
 }
 
 // A 32-bit variant of gamma8() that applies the same function
 // to all components of a packed RGB or WRGB value.
-uint32_t AITT_NeoPixel::gamma32(uint32_t x) {
+uint32_t Adafruit_NeoPixel::gamma32(uint32_t x) {
   uint8_t *y = (uint8_t *)&x;
   // All four bytes of a 32-bit value are filtered even if RGB (not WRGB),
   // to avoid a bunch of shifting and masking that would be necessary for

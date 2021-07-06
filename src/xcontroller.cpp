@@ -1,22 +1,31 @@
-#include "xcontroller.h" 
+#include "xcontroller.h"
+#include "Tone32.h"
 
+XController::XController() {
+
+}
+
+/*
 void xcontroller::init(){
   pca.init();
   led.init();
 }
+*/
+void XController::showLed(uint8_t index, uint8_t r, uint8_t g, uint8_t b) {
+  if (index == 0) {
+    ledOnboard.setPixelColor(0, r, g, b);
+    ledOnboard.setPixelColor(1, r, g, b);
+  } else {
+    ledOnboard.setPixelColor(index-1, r, g, b);
+  }
 
-void xcontroller::tone(unsigned int frequency, unsigned long duration){
-  tone32.tone(frequency, duration);
+  ledOnboard.show();
 }
 
-void xcontroller::noTone(){
-  tone32.noTone();
+void XController::tone(unsigned int frequency, unsigned long duration, uint8_t channel) {
+  tone32(BUZZER, frequency, duration, channel);
 }
 
-void xcontroller::show_led(int index, String color){
-  led.show(index, color);
-}
-
-void xcontroller::led_off(int index){
-  led.off(index);
+void XController::noTone(uint8_t channel) {
+  noTone32(BUZZER, channel);
 }

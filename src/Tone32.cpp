@@ -1,22 +1,21 @@
 #include "Tone32.h"
-#include "setting.h"
 
-void Tone32::tone(unsigned int frequency, unsigned long duration)
+void tone32(uint8_t pin, unsigned int frequency, unsigned long duration, uint8_t channel)
 {
-    if (ledcRead(BUZZER_CHANNEL)) {
-        log_e("Tone channel %d is already in use", ledcRead(BUZZER_CHANNEL));
+    if (ledcRead(channel)) {
+        log_e("Tone channel %d is already in use", ledcRead(channel));
         return;
     }
-    ledcAttachPin(BUZZER, BUZZER_CHANNEL);
-    ledcWriteTone(BUZZER_CHANNEL, frequency);
+    ledcAttachPin(pin, channel);
+    ledcWriteTone(channel, frequency);
     if (duration) {
         delay(duration);
-        noTone();
+        noTone32(pin, channel);
     }    
 }
 
-void Tone32::noTone()
+void noTone32(uint8_t pin, uint8_t channel)
 {
-    ledcDetachPin(BUZZER);
-    ledcWrite(BUZZER_CHANNEL, 0);
+    ledcDetachPin(pin);
+    ledcWrite(channel, 0);
 }

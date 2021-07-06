@@ -1,19 +1,22 @@
 {
-	"name": "xBotArduino",
-	"description": "Create an xBot project",
-	"keywords": "xBot, xBotArduino",
-	"authors":
+	"name": "xController Library",
+	"version": "1.0.0",
+	"description": "Library to connect and control xBot robot and xController board. Provides all required functionality to find Totem robots, control connection and interact with OhStem modules",
+	"keywords": "xBot, xController, esp32, robot",
+	"authors": [
 		{
-			"name": "AITT",
-			"email": "user@gmail.com",
-			"url": "https://github.com/AITT-VN"
+			"name": "OhStem Education",
+			"email": "vanminh0910@gmail.com",
+			"url": "https://ohstem.vn"
 		},
+	],
 	"repository":
 	{
 		"type": "git",
-		"url": "https://github.com/AITT-VN/xbot_controller_arduino"
+		"url": "https://github.com/AITT-VN/xcontroller_arduino_lib"
 	},
 	"url": "https://github.com/AITT-VN",
-	"frameworks": "Arduino",
-	"platforms": "*"
+	"homepage": "https://ohstem.vn",
+	"frameworks": "arduino",
+	"platforms": "espressif32"
 }
