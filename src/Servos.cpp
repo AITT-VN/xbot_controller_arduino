@@ -1,9 +1,15 @@
 #include "Servos.h"
 
 Servos::Servos() {
-  pca9685.begin();
-  pca9685.setPWMFreq(50); 
-  delay(10);
+  //pca9685.begin();
+  //pca9685.setPWMFreq(50); 
+  //delay(10);
+}
+
+void Servos::init(){
+    pca9685.begin();
+    pca9685.setPWMFreq(50); 
+    delay(10);
 }
 
 

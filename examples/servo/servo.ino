@@ -3,7 +3,7 @@
 Servos s;
 // the setup function runs once when you press reset or power the board
 void setup() {
-  
+  s.init();
 }
 
 // the loop function runs over and over again forever

@@ -11,6 +11,7 @@ class Servos{
 
   public:
     Servos();
+    void init();
     void position(int index, int degrees);
     void rotate(int index, int change, int sleep);
     void release(int index);

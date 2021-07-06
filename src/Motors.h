@@ -21,6 +21,7 @@ class Motors{
 
   public:
     Motors();
+    void init();
     void speed(int m1, int m2);
     void move(int dir, int speed);
     void stop();
