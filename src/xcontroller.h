@@ -3,6 +3,8 @@
 #include "Tone32.h"
 #include "Motors.h"
 #include "Servos.h"
+#include "mpu6050.h"
+#include "esp32BLEUtilities.h"
 
 #ifndef XCONTROLLER_H
 #define XCONTROLLER_H
