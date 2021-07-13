@@ -188,10 +188,36 @@
 #include "IR/IRReceive.cpp.h"
 #include "IR/IRSend.cpp.h"
 
+/*
+ * Define key on OhStem IR remote.
+ */
+
+#define IR_REMOTE_A 77 //0x45
+#define IR_REMOTE_B 0x46
+#define IR_REMOTE_C 0x47
+#define IR_REMOTE_D 0x44
+#define IR_REMOTE_E 0x43
+#define IR_REMOTE_F 0x0d
+#define IR_REMOTE_UP 0x40
+#define IR_REMOTE_DOWN 0x19
+#define IR_REMOTE_LEFT 0x7
+#define IR_REMOTE_RIGHT 0x9
+#define IR_REMOTE_SETUP 0x15
+#define IR_REMOTE_0 0x16
+#define IR_REMOTE_1 0x0c
+#define IR_REMOTE_2 0x18
+#define IR_REMOTE_3 0x5e
+#define IR_REMOTE_4 0x08
+#define IR_REMOTE_5 0x1c
+#define IR_REMOTE_6 0x5a
+#define IR_REMOTE_7 0x42
+#define IR_REMOTE_8 0x52
+#define IR_REMOTE_9 0x4a
+
 /**
  * Macros for legacy compatibility
  */
-#define RAWBUF  101  // Maximum length of raw duration buffer
+#define RAWBUF  250  // Maximum length of raw duration buffer
 #define REPEAT 0xFFFFFFFF
 #define USECPERTICK MICROS_PER_TICK
 #define MARK_EXCESS MARK_EXCESS_MICROS
