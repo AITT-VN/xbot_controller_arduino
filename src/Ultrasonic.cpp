@@ -41,31 +41,3 @@ double Ultrasonic::measureDistanceCm(float temperature) {
         return distanceCm;
     }
 }
-
-UltrasonicAndLed::UltrasonicAndLed(uint8_t ultra_pin, uint8_t led_pin)
-{
-	_pin = ultra_pin;
-    Ledpin = led_pin;
-}
-/*The measured distance from the range 0 to 400 Centimeters*/
-long UltrasonicAndLed::MeasureInCentimeters(void)
-{
-	pinMode(_pin, OUTPUT);
-	digitalWrite(_pin, LOW);
-	delayMicroseconds(2);
-	digitalWrite(_pin, HIGH);
-	delayMicroseconds(5);
-	digitalWrite(_pin,LOW);
-	pinMode(_pin,INPUT);
-	long duration;
-	duration = pulseIn(_pin,HIGH);
-	long RangeInCentimeters;
-	RangeInCentimeters = duration/29/2;
-	return RangeInCentimeters;
-}
-void UltrasonicAndLed::showLed(uint8_t r, uint8_t g, uint8_t b) {
-    for (int i=0; i< NUMPIXELS; i++){
-        Ultra_led.setPixelColor(i, r, g, b);
-        Ultra_led.show();
-        }
-}
