@@ -36,7 +36,7 @@ double Ultrasonic::measureDistanceCm() {
     }
 }
 
-double Ultrasonic::measureDistancemm() {
+double Ultrasonic::measureDistanceMm() {
     // Make sure that trigger pin is LOW.
     digitalWrite(triggerPin, LOW);
     delayMicroseconds(2);
