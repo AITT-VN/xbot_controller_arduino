@@ -4,27 +4,21 @@
 
 #include "LineArray.h"
 
-LineArray::LineArray(int sda, int scl)
-{
-  _sda = sda;
-  _scl = scl;
-  Line_array.begin(sda, scl);
+LineArray::LineArray(int sda, int scl) {
+  _pcf8574.begin(sda, scl);
 }
-
-uint8_t LineArray::read_pin(int pin)
-{
-  Line_array.read(pin);
-  /*
-    .read(pin) = 0 white line
-    .read(pin) = 1 black line
-  */
-}
-
-uint8_t LineArray::read_all()
-{
-  int line_1 = Line_array.read(0); 
-  int line_2 = Line_array.read(1); 
-  int line_3 = Line_array.read(2); 
-  int line_4 = Line_array.read(3);
-  return ((line_1, line_2, line_3, line_4));
+int* LineArray::read(uint8_t index) {
+  if (index == -1) {
+    int result[4];
+    result[0] = _pcf8574.read(0);
+    result[1] = _pcf8574.read(1);
+    result[2] = _pcf8574.read(2);
+    result[3] = _pcf8574.read(3);
+    return result;
+  } 
+  else if ((index > 3) || (index < -1)) {
+    Serial.println("Support pin 0 to 3 only");
+  } else {
+    _pcf8574.read(index);
+  }
 }
